@@ -1,0 +1,29 @@
+<div class="container text-center shadow-lg"
+   style="width: 500px; border-radius: 20px; margin-top: 60px; background-color: white;">
+   <img [src]="pokemon.img" width="475px" class=" mt-2">
+   <ul class="list-group">
+      <li class="list-group-item">ID: {{pokemon.id}}</li>
+      <li class="list-group-item">Nome: {{pokemon.name | titlecase}}</li>
+      <li class="list-group-item">Altura: {{pokemon.height}}</li>
+      <li class="list-group-item">Peso: {{pokemon.weight}}</li>
+   </ul>
+
+
+
+   <input class="form-control mt-3 text-center" (change)="getPokeId()" [(ngModel)]="this.nomePesquisado"
+      placeholder="Pesquisar Por Nome?">
+
+   <div class="buttons">
+      <button class="btn btn-danger mt-4" style="border-radius: 30px; margin-right: 10px;" (click)="backwardPokemon()">
+         Pókemon Anterior
+      </button>
+      <button class="btn btn-primary mt-4" style="border-radius: 30px; margin-right: 10px;" (click)="searchPokemon()">
+         Pesquisar Nome
+      </button>
+      <button class="btn btn-success mt-4" style="border-radius: 30px;" (click)="forwardPokemon()">
+         Próximo Pókemon
+      </button>
+      <br><br>
+   </div>
+
+</div>
