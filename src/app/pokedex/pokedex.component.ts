@@ -22,7 +22,7 @@ export class PokedexComponent {
 
   searchPokemon() {
     if(this.nomePesquisado != "" && this.idPesquisado == ""){
-      this.service.nomeChave = this.nomePesquisado;
+      this.service.nomeChave = this.nomePesquisado.toLowerCase();
       this.service.idChave == this.pokemon.id;
       this.service.getPokemon().subscribe(
         {
