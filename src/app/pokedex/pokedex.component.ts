@@ -13,6 +13,7 @@ export class PokedexComponent {
   nomePesquisado : string = "";
   idPesquisado : string = "";
   idConvert : number = parseInt(this.idPesquisado);
+  shiny: boolean = false;
 
   constructor(private service: Pokedex) { }
 
@@ -20,7 +21,11 @@ export class PokedexComponent {
     this.loadPokemon();
   }
 
+  getImg(): string { return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${this.pokemon.id}.png` }
+  getImgShiny(): string { return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${this.pokemon.id}.png` }
+
   searchPokemon() {
+    this.shiny = false;
     if(this.nomePesquisado != "" && this.idPesquisado == ""){
       this.service.nomeChave = this.nomePesquisado.toLowerCase();
       this.service.idChave == this.pokemon.id;
@@ -28,7 +33,8 @@ export class PokedexComponent {
         {
           next: data => {
             this.pokemon = data;
-            this.pokemon.img = data.sprites.other.home.front_default;
+            this.pokemon.img = this.getImg();
+            this.pokemon.type = data.types.type.name;
           }
         }
       );
@@ -40,9 +46,10 @@ export class PokedexComponent {
 
   
   backwardPokemon() {
+    this.shiny = false;
     this.service.idChave = this.pokemon.id;
-    if (this.service.idChave <= 0) {
-      this.service.idChave = this.service.idChave + 1;
+    if (this.service.idChave == 0 ) {
+      this.service.idChave = this.service.idChave;
     } else {
       this.service.idChave = this.service.idChave - 1;
     }
@@ -51,12 +58,14 @@ export class PokedexComponent {
         next: data => {
           this.pokemon = data;
           this.pokemon.img = data.sprites.other.home.front_default;
+          this.pokemon.img = this.getImg();
         }
       }
     );
   }
 
   forwardPokemon() {
+    this.shiny = false;
     this.service.idChave = this.pokemon.id;
     this.service.idChave = this.service.idChave + 1;
     this.service.getPokemonByID().subscribe(
@@ -64,20 +73,33 @@ export class PokedexComponent {
         next: data => {
           this.pokemon = data;
           this.pokemon.img = data.sprites.other.home.front_default;
+          this.pokemon.img = this.getImg();
         }
       }
     );
   }
 
   loadPokemon() {
+    this.shiny = false;
     this.service.getPokemonByID().subscribe(
       {
         next: data => {
           this.pokemon = data;
-          this.pokemon.img = data.sprites.other.home.front_default;
+          this.pokemon.img = this.getImg();
         }
       }
     );
+  }
+
+  shinyPokemon() {
+   if(this.shiny == false){
+    this.shiny = true;
+    this.pokemon.img = this.getImgShiny();
+   }else{
+    this.pokemon.img = this.getImg();
+    this.shiny = false;
+  }
+   
   }
 
   getPokeName(): string {
