@@ -1,36 +1,46 @@
-   <div class="container text-center" style="border-radius: 20px; max-width: 27%;">
-      <img [src]="pokemon.img" width="475px" class="card-img-top mt-2">
-      <div class="card-body mt-2">
-         <ul class="list-group" style="border-radius: 30px;">
-            <li class="list-group-item">ID: {{pokemon.id}}</li>
-            <li class="list-group-item">Nome: {{pokemon.name | titlecase}}</li>
-            <li class="list-group-item">Altura: {{pokemon.height}}</li>
-            <li class="list-group-item">Peso : {{pokemon.weight}}</li>
-            <li class="list-group-item">Tipo(s) : {{shiny}}</li>
-         </ul>
-   <div class="buttons">
-      <input class="form-control mt-3 text-center" (change)="getPokeId()" [(ngModel)]="this.nomePesquisado"
-      placeholder="Pesquisar Por Nome/ID?" style="border-radius: 40px;">
-      <button title="Voltar" class="btn btn-danger mt-4" style="border-radius: 30px; margin-right: 10px;" (click)="backwardPokemon()">
-         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="30" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-          </svg>
-      </button>
-      <button title="Pesquisar Nome/ID" class="btn btn-primary mt-4" style="border-radius: 30px; margin-right: 10px;" (click)="searchPokemon()">
-         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-          </svg>
-      </button>
-      <button title="Versão Shiny Do Pokémon" class="btn btn-warning mt-4" style="border-radius: 30px; margin-right:10px; " (click)="shinyPokemon()">
-         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="30" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
-            <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
-          </svg>
-      </button>
-      <button title="Avançar" class="btn btn-success mt-4" style="border-radius: 30px" (click)="forwardPokemon()">
-         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="30" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-          </svg>
-      </button><br>
+<div class="container text-center mt-1" style="border-radius: 20px; max-width: 27%;">
+   <img [src]="pokemon.img" width="475px" class="card-img-top mt-2">
+   <div class="card-body mt-2">
+      <ul class="list-group" style="border-radius: 30px;">
+         <li class="list-group-item">ID: {{pokemon.id}}</li>
+         <li class="list-group-item">Nome: {{pokemon.name | titlecase}}</li>
+         <li class="list-group-item">Altura: {{pokemon.height}}</li>
+         <li class="list-group-item">Peso : {{pokemon.weight}}</li>
+         <li class="list-group-item">Ataques : {{pokemon.type}}</li>
+      </ul>
+      <div class="buttons">
+         <input class="form-control mt-2 text-center" (change)="getPokeId()" [(ngModel)]="this.nomePesquisado"
+            placeholder="Pesquisar Por Nome/ID?" style="border-radius: 40px;">
+         <button title="Voltar" class="btn mt-2" style="background-color: white;border: 1px;border-style: solid;border-radius: 30px; margin-right: 10px;"
+            (click)="backwardPokemon()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-arrow-left"
+               viewBox="0 0 16 16">
+               <path fill-rule="evenodd"
+                  d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+            </svg>
+         </button>
+         <button title="Pesquisar Nome/ID" class="btn mt-2" style="background-color: white;border: 1px;border-style: solid;border-radius: 30px; margin-right: 10px;"
+            (click)="searchPokemon()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-search"
+               viewBox="0 0 16 16">
+               <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            </svg>
+         </button>
+         <button title="Versão Shiny Do Pokémon" class="btn mt-2" style="background-color: white;border: 1px;border-style: solid;border-radius: 30px; margin-right: 10px;" (click)="shinyPokemon()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor"
+               class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+               <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
+               <path
+                  d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
+            </svg>
+         </button>
+         <button title="Avançar" class="btn mt-2" style="background-color: white;border: 1px;border-style: solid;border-radius: 30px;" (click)="forwardPokemon()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-arrow-right"
+               viewBox="0 0 16 16">
+               <path fill-rule="evenodd"
+                  d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+            </svg>
+         </button><br>
       </div>
-    </div>
+   </div>

@@ -11,6 +11,7 @@ export class Pokedex {
   url : string = "https://pokeapi.co/api/v2/pokemon/"
   public idChave : number = 1;
   public nomeChave : string = "";
+  public area : string = "https://pokeapi.co/api/v2/pokemon/"
   //Injeção
   constructor(private http:HttpClient) {}
 

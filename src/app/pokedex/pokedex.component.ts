@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Pokemon } from '../Pokemon';
 import { Pokedex } from '../pokedex.service';
 import { FormsModule } from '@angular/forms';
+import { mergeAll } from 'rxjs';
 
 @Component({
   selector: 'app-pokedex',
@@ -34,7 +35,6 @@ export class PokedexComponent {
           next: data => {
             this.pokemon = data;
             this.pokemon.img = this.getImg();
-            this.pokemon.type = data.types.type.name;
           }
         }
       );
@@ -42,14 +42,12 @@ export class PokedexComponent {
     }
   }
   
-
-
   
   backwardPokemon() {
     this.shiny = false;
     this.service.idChave = this.pokemon.id;
-    if (this.service.idChave == 0 ) {
-      this.service.idChave = this.service.idChave;
+    if (this.service.idChave <= 1 ) {
+      this.service.idChave = 1010;
     } else {
       this.service.idChave = this.service.idChave - 1;
     }
@@ -67,7 +65,11 @@ export class PokedexComponent {
   forwardPokemon() {
     this.shiny = false;
     this.service.idChave = this.pokemon.id;
-    this.service.idChave = this.service.idChave + 1;
+    if (this.service.idChave >= 1010 ) {
+      this.service.idChave = 1;
+    } else {
+      this.service.idChave = this.service.idChave + 1;
+    }
     this.service.getPokemonByID().subscribe(
       {
         next: data => {
@@ -99,7 +101,6 @@ export class PokedexComponent {
     this.pokemon.img = this.getImg();
     this.shiny = false;
   }
-   
   }
 
   getPokeName(): string {

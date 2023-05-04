@@ -3,6 +3,6 @@ export interface Pokemon {
     name : string;
     height : number;
     weight : number;
-    type : string;
+    type : string[];
     img : string;
 }
